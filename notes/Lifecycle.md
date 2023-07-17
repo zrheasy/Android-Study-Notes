@@ -17,10 +17,10 @@ LifecycleRegistry是Lifecycle唯一的实现类，内部使用FastSafeIterableMa
 
 ## 生命周期状态和事件
 以下为生命周期状态变化的时序图：
-
+```mermaid
 sequenceDiagram
-    participant INITIALIZED
     participant DESTROYED
+    participant INITIALIZED
     participant CREATED
     participant STARTED
     participant RESUMED
@@ -31,6 +31,7 @@ sequenceDiagram
     RESUMED ->> STARTED : ON_PAUSE
     STARTED ->> CREATED : ON_STOP
     CREATED ->> DESTROYED : ON_DESTROY
+```
 
 实现了LifecycleOwner接口的Fragment和ComponentActivity内部会创建一个LifecycleRegistry用于记录生命周期状态和分发事件，两者内部分发逻辑稍有不同；
 
