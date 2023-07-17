@@ -1,0 +1,20 @@
+# OkHttp请求流程
+1. 调用OkHttpClient.newCall()创建一个RealCall
+2. 调用RealCall.enqueue()执行异步请求，RealCall创建一个内部AsyncCall然后放入Dispatcher的队列中依次执行
+3. AsyncCall执行executeOn()将自己放入指定线程池中，然后线程池调度执行AsyncCall的run()方法
+4. AsyncCall调用RealCall的getResponseWithInterceptorChain()方法执行请求，方法内创建所需的拦截器集合和拦截器链RealInterceptorChain
+5. 接着执行chain.proceed()方法按照拦截器的顺序依次执行，最后返回请求结果
+
+内部拦截器执行流程：
+1. RealInterceptorChain.proceed()方法内会根据当前的index从interceptors数组中取出拦截器执行interceptor.intercept(next)
+2. 执行的第一个内部拦截器为RetryAndFollowUpInterceptor，此拦截器主要处理错误重试和重定向。
+3. 执行的第一个内部拦截器为BridgeInterceptor，此拦截器负责添加必要的请求头，如Content-Type、Accept-Encoding、User-Agent等，然后处理gzip类型的数据解压。
+4. 执行的第一个内部拦截器为CacheInterceptor，此拦截器负责管理请求资源的缓存。
+5. 执行的第一个内部拦截器为ConnectInterceptor，此拦截器负责打开和远程服务器的连接，通过连接池复用技术提高请求效率和减少资源消耗。
+6. 执行的第一个内部拦截器为CallServerInterceptor，此拦截器负责处理客户端和服务器通信的数据交换。
+
+连接池复用：
+1. 在ConnectInterceptor.intercept()中通过RealCall.initExchange()初始化数据交换器Exchange
+2. 通过ExchangeFinder.find()查找ExchangeCodec，内部则继续通过findHealthyConnection()找到可用的RealConnection，在通过RealConnection.newCodec()创建一个ExchangeCodec
+3. ExchangeFinder.findConnection()里调用3次不同参数的RealConnectionPool.callAcquirePooledConnection()来查找合适的RealConnection，如果没有则创建一个新的RealConnection，并执行connect()进行socket连接
+4. 最后将新的RealConnection添加到RealConnectionPool中并设置给RealCall使用
