@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
+import com.zrh.notes.annotation.AnnotationActivity
 import com.zrh.notes.databinding.ActivityMainBinding
+import com.zrh.notes.glide.GlideActivity
+import com.zrh.notes.lifecycle.LifecycleActivity
+import com.zrh.notes.okhttp.OkhttpActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
@@ -16,7 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         addEntryButton("Glide", GlideActivity::class.java)
         addEntryButton("Okhttp", OkhttpActivity::class.java)
-        addEntryButton("Annotation", this.javaClass)
+        addEntryButton("Annotation", AnnotationActivity::class.java)
+        addEntryButton("Lifecycle", LifecycleActivity::class.java)
     }
 
     private fun addEntryButton(name: String, clazz: Class<*>) {
