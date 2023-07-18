@@ -31,6 +31,7 @@
         <activity android:name="com.zrh.notes.okhttp.OkhttpActivity" />
         <activity android:name="com.zrh.notes.lifecycle.LifecycleActivity" />
         <activity android:name="com.zrh.notes.annotation.AnnotationActivity" />
+        <activity android:name="com.zrh.notes.lifecycle.ViewModelActivity" />
     </application>
 
 </manifest>

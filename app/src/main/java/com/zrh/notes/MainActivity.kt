@@ -9,6 +9,7 @@ import com.zrh.notes.annotation.AnnotationActivity
 import com.zrh.notes.databinding.ActivityMainBinding
 import com.zrh.notes.glide.GlideActivity
 import com.zrh.notes.lifecycle.LifecycleActivity
+import com.zrh.notes.lifecycle.ViewModelActivity
 import com.zrh.notes.okhttp.OkhttpActivity
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         addEntryButton("Okhttp", OkhttpActivity::class.java)
         addEntryButton("Annotation", AnnotationActivity::class.java)
         addEntryButton("Lifecycle", LifecycleActivity::class.java)
+        addEntryButton("ViewModel", ViewModelActivity::class.java)
     }
 
     private fun addEntryButton(name: String, clazz: Class<*>) {
