@@ -32,6 +32,9 @@
         <activity android:name="com.zrh.notes.lifecycle.LifecycleActivity" />
         <activity android:name="com.zrh.notes.annotation.AnnotationActivity" />
         <activity android:name="com.zrh.notes.lifecycle.ViewModelActivity" />
+        <activity android:name="com.zrh.notes.anr.ANRActivity" />
+
+        <service android:name="com.zrh.notes.anr.ANRService" />
     </application>
 
 </manifest>
