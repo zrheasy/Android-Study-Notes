@@ -9,6 +9,7 @@ import com.zrh.notes.annotation.AnnotationActivity
 import com.zrh.notes.anr.ANRActivity
 import com.zrh.notes.databinding.ActivityMainBinding
 import com.zrh.notes.glide.GlideActivity
+import com.zrh.notes.jsbridge.WebViewActivity
 import com.zrh.notes.lifecycle.LifecycleActivity
 import com.zrh.notes.lifecycle.ViewModelActivity
 import com.zrh.notes.okhttp.OkhttpActivity
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         addEntryButton("Lifecycle", LifecycleActivity::class.java)
         addEntryButton("ViewModel", ViewModelActivity::class.java)
         addEntryButton("ANR", ANRActivity::class.java)
+        addEntryButton("WebView", WebViewActivity::class.java)
     }
 
     private fun addEntryButton(name: String, clazz: Class<*>) {

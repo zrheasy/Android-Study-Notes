@@ -1,0 +1,42 @@
+<body>
+<div>
+    <button id="showDialog" style="height:100px; width:100%; font-size:32px;">弹窗</button>
+    <br/>
+    <br/>
+    <button id="pickFile" style="height:100px; width:100%; font-size:32px;">选择文件</button>
+</div>
+</body>
+<script>
+  let id = 1;
+
+  const callbackMap = {};
+
+  window.JSSdk = {
+
+    showDialog(title, msg) {
+      window.JSBridge.showDialog(title, msg);
+    },
+
+    pickFile(callback) {
+      const callbackId = id++;
+      callbackMap[callbackId] = callback;
+      window.JSBridge.pickFile(callbackId);
+    },
+
+    onCallback(callbackId, value) {
+      if (callbackMap[callbackId]) {
+        callbackMap[callbackId](value);
+        delete callbackMap[callbackId];
+      }
+    }
+  };
+
+  document.querySelector('#showDialog').addEventListener('click', e => {
+    window.JSSdk.showDialog('Notice','Hello World!');
+  });
+
+  document.querySelector('#pickFile').addEventListener('click', e => {
+    window.JSSdk.pickFile(value => window.alert('选择文件：' + value));
+  });
+
+</script>
