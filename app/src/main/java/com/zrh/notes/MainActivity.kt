@@ -13,6 +13,7 @@ import com.zrh.notes.jsbridge.WebViewActivity
 import com.zrh.notes.lifecycle.LifecycleActivity
 import com.zrh.notes.lifecycle.ViewModelActivity
 import com.zrh.notes.okhttp.OkhttpActivity
+import com.zrh.notes.surfaceview.SurfaceViewActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         addEntryButton("ViewModel", ViewModelActivity::class.java)
         addEntryButton("ANR", ANRActivity::class.java)
         addEntryButton("WebView", WebViewActivity::class.java)
+        addEntryButton("SurfaceView", SurfaceViewActivity::class.java)
     }
 
     private fun addEntryButton(name: String, clazz: Class<*>) {

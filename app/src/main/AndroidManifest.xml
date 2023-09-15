@@ -40,6 +40,7 @@
         <activity android:name="com.zrh.notes.lifecycle.ViewModelActivity" />
         <activity android:name="com.zrh.notes.anr.ANRActivity" />
         <activity android:name="com.zrh.notes.jsbridge.WebViewActivity" />
+        <activity android:name="com.zrh.notes.surfaceview.SurfaceViewActivity" android:windowSoftInputMode="adjustResize"/>
 
         <service android:name="com.zrh.notes.anr.ANRService" />
     </application>
